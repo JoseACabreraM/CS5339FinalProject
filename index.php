@@ -19,11 +19,19 @@ session_start();
         border: 1px solid black;
         border-collapse: collapse;
     }
+
+    .link {
+        margin: 10px 10px 10px 10px;
+        padding: 10px 10px 10px 10px;
+    }
+
+
 </style>
 <div align='center'>
 <h3> THESE ARE THE PARTS TO SELL <br></h3>
 <h4> To buy any part you must login first</h4>
-<a href="login.php"> Login </a> <a href="addUser"
+<a href="login.php" class="link"> Login </a>
+    <a href="addUser.php" class="link">      Register </a>
 <div align='left'>
 
 
