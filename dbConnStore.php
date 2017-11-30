@@ -7,10 +7,10 @@ $dbName = "lgromero2"; //name of the database
 */
 
 
-$dbServer = "earth.cs.utep.edu";
-$dbUsername = "lgromero2"; //utep username
-$dbPassword = "G@briel0712"; //utep password
-$dbName = "f17cs4339team01"; //name of the database
+$dbServer = "localhost";
+$dbUsername = "root"; //utep username
+$dbPassword = ""; //utep password
+$dbName = "store"; //name of the database
 
 
 $conn2 = mysqli_connect($dbServer,$dbUsername,$dbPassword,$dbName);

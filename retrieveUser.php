@@ -9,7 +9,7 @@ if (isset($_POST['uName']) && isset($_POST['pWord'])) {
     $uName = mysqli_real_escape_string($connection, $_POST['uName']);
     $pWord = mysqli_real_escape_string($connection, $_POST['pWord']);
     if (existingUser($connection, $uName) && verifyUser($connection, $uName, $pWord)) {
-        header("Location:mainpage.php");
+        header("Location:index.php");
         exit();
     } else {
         header("Location:login.php?error=1");

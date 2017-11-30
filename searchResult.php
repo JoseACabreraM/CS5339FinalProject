@@ -5,6 +5,7 @@ if(!isset($_POST['search'])){
     header("Location:index.php");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,16 +27,19 @@ table, th, td {
            <td><strong>Image</strong></td>
            <td><strong>Price</strong></td>
        </tr>
-    <?php
-$search_sql="Select * FROM parts where PartName LIKE '%".$_POST['search']."%' or Description01 LIKE '%".$_POST['search']."$'";
+
+<?php
+
+$search_sql="Select * FROM parts where PartName LIKE '%".$_POST['search']."%'  or Description01 LIKE '%".$_POST['search']."%' or Description02 LIKE '%".$_POST['search']."%' or Description03 LIKE '%".$_POST['search']."%'
+or Description04 LIKE '%".$_POST['search']."%' or Description05 LIKE '%".$_POST['search']."%' or Description06 LIKE '%".$_POST['search']."%'";
 $result = $conn2->query($search_sql);
-$sql = "SELECT Associated_Image1, Price FROM parts ORDER BY Price DESC";
+$sql = "SELECT Associated image filename1, Price FROM parts ORDER BY Price ASC";
 $resultImage = $conn2->query($sql);
-//echo "THESE ARE THE PARTS TO SELL <br><br>";
 echo '<a href="index.php"> New Search </a>'."<br>";
-?>
-    <?php
-if ($result->num_rows > 0 && $resultImage-> num_rows > 0) {
+
+
+
+if ($result->num_rows > 0){
     while ($row = $result->fetch_assoc()) {
          $image = $row["Associated_Image1"];?>
     <tr>

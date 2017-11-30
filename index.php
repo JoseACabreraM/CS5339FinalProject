@@ -23,7 +23,7 @@ session_start();
 <div align='center'>
 <h3> THESE ARE THE PARTS TO SELL <br></h3>
 <h4> To buy any part you must login first</h4>
-<a href="login.php"> Login </a>
+<a href="login.php"> Login </a> <a href="addUser"
 <div align='left'>
 
 

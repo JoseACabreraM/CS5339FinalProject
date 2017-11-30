@@ -5,6 +5,6 @@ if (isset($_SESSION['uName']) && isset($_POST['Logout'])) {
         $_SESSION = array();
         session_destroy();
     }
-    header("Location:mainpage.php");
+    header("Location:index.php");
     exit();
 }

@@ -3,7 +3,7 @@
 require_once 'credentials.php';
 session_start();
 
-print "
+?>
     <!DOCTYPE html>
     <html lang='en'>
     <head>
@@ -21,14 +21,14 @@ print "
     </style>
     <body style='background-color:lightgray;'>
     
-";
 
+<?php
 if (isset($_SESSION['uName'])) {
     $uName = $_SESSION['uName'];
     $uType = $_SESSION['uType'];
-    if ($uType == 0) {
-        print "
-            <div 
+    if ($uType == 0) {?>
+        //print "
+            <div
                 align='center'><h1> Admin </h1></div>
             <div>
     
@@ -60,34 +60,33 @@ if (isset($_SESSION['uName'])) {
                     <button> User Page </button> 
                 </form>
             </div>
-        ";
+        <?php
     } else {
-        print "
+        //print "?>
             <div align='center'>
                 Not authorized to access this webpage!
             </div>
-        ";
+        <?php
     }
 } else {
-    print "
+    //print "?>
         <div align='center'>
             Not authorized to access this webpage!
         </div>
-    ";
+ <?php
 }
 
-print "
+//print "?>
     <div align='center'> 
         <br>
-        <form action='mainpage.php'>   
+        <form action='index.php'>
             <button> Main Page </button> 
         </form>
     </div>
     </div>
     </body>
     </html>
-";
-
+<?php
 if (isset($_POST['sUsers']) && $_POST['sUsers'] == 'Show Registered Users') {
     printAllUsers();
 }
@@ -97,8 +96,9 @@ function printAllUsers()
     global $db_database, $db_hostname, $db_password, $db_username;
     $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database);
     $query = "SELECT * FROM userData";
-    $result = $connection->query($query);
-    print " <table  style=\"width:100%\">
+    $result = $connection->query($query);?>
+
+     <table  style=\"width:100%\">
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th> 
@@ -107,7 +107,7 @@ function printAllUsers()
                 <th>Last Login</th>
                 <th>Account Type</th>
             </tr>
-    ";
+    <?php
     $rows = $result->num_rows;
     for ($j = 0; $j < $rows; ++$j) {
         print '<tr style="text-align:center;">';
@@ -132,3 +132,4 @@ function printAllUsers()
     }
     print "</table>";
 }
+?>

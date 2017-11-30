@@ -59,7 +59,7 @@ if (isset($_SESSION['uName'])) {
 print "    
        <div align='center'>
             <br>
-            <form action='mainpage.php'>   
+            <form action='index.php'>   
                 <button> Home </button> 
             </form>
             <br>

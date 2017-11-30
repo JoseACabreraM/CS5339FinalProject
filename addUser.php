@@ -5,7 +5,7 @@ date_default_timezone_set('America/Denver');
 session_start();
 
 $connection = new mysqli($db_hostname, $db_username, $db_password, $db_database);
-print "                
+?>
     <!DOCTYPE html>
         <html lang='en'>
         <head>
@@ -13,8 +13,8 @@ print "
             <title>Title</title>
         </head>
         <body style='background-color:lightgray;'>
-";
 
+<?php
 if (isset($_POST['submission'])) {
     if (isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['uName']) && isset($_POST['pWord']) && isset($_POST['uType'])) {
         $fName = mysqli_real_escape_string($connection, $_POST['fName']);
@@ -24,7 +24,7 @@ if (isset($_POST['submission'])) {
         $uType = mysqli_real_escape_string($connection, $_POST['uType']);
         $salt = "e4djuki9";
         if (!existingUser($connection, $uName)) {
-            print " 
+            ?>
                 <div align='center'><h1> Succesfully Added User! </h1></div>
                 <div align='center'>
                     <br>
@@ -46,12 +46,12 @@ if (isset($_POST['submission'])) {
                 </div> 
                 <div align='center'>
                     <br>
-                    <form action='mainpage.php'>   
+                    <form action='index.php'>
                     <button> Main Page </button> 
                     </form>
                 </div>
                 
-            ";
+            <?php
             if ($uType == "nUser") {
                 addUser($connection, $fName, $lName, $uName, $pWord, 1, $salt);
             } else {
@@ -66,8 +66,8 @@ if (isset($_POST['submission'])) {
         exit();
     }
 } else {
+?>
 
-    print " 
                 <!DOCTYPE html>
                 <html lang='en'>
                 <head>
@@ -93,8 +93,8 @@ if (isset($_POST['submission'])) {
                         <input type='hidden' name='submission' value='sA'>
                     </form>
                 </div>
-            ";
 
+<?php
     if (isset($_GET['error'])) {
         if ($_GET['error'] == 1) {
             print "
@@ -116,7 +116,7 @@ if (isset($_POST['submission'])) {
     print "
         <div align='center'>
             <br>
-            <form action='mainpage.php'>   
+            <form action='index.php'>   
             <button> Main Page </button> 
             </form>
         </div>

@@ -2,7 +2,7 @@
 
 session_start();
 
-print "
+?>
     <!DOCTYPE html>
     <html lang=\"en\">
     <head>
@@ -11,11 +11,11 @@ print "
     </head>
     <body style=\"background-color:lightgray;\">
     
-";
+<?php
 
 if (isset($_SESSION['uName'])) {
     $uName = $_SESSION['uName'];
-    print "
+    ?>
         <div 
             align='center'><h1> Users Page </h1></div>
         <div>
@@ -55,8 +55,8 @@ if (isset($_SESSION['uName'])) {
                 <input type='submit' name='uInfo' value='View User Data'> 
             </form>               
         </div>
-        
-    ";
+
+    <?php
     if (isset($_POST['uInfo'])) {
         printUserData();
     }
@@ -71,7 +71,7 @@ if (isset($_SESSION['uName'])) {
 print "
     <div align='center'> 
         <br>
-        <form action='mainpage.php'>   
+        <form action='index.php'>   
             <button> Main Page </button> 
         </form>
     </div>
