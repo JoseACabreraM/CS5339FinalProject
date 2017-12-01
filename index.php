@@ -6,10 +6,15 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript" src="/path/to/jquery-latest.js"></script>
+    <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
     <meta charset="UTF-8">
     <title>Car Part To Sell</title>
 </head>
 <body style='background-color:lightgray;'>
+
+
+</body>
 <div align='center'><h1> AutoParts  </h1></div>
 <style>
     th {
@@ -41,24 +46,40 @@ session_start();
             <input name='submit' type='Submit' value='Search'>
         </form>
 
-<p><b>Filtering</b> </p> <select name='value'>
-    <option value='Tire'>Tire</option>
-    <option value='Piston'>Piston</option>
-    <option value='Alternator'>Alternator</option>
-</select> <br><br>
-
+<p><b>Order By</b> </p>
+    <form action="orderBy.php" method="post">
+    <select name='value'>
+    <option value='Price'>Price</option>
+    <option value='PartName'>Part Name</option>
+    <option value='PartID'>Part ID</option>
+</select> <br>
+        <input name="Order" type="submit" value="Order"><br>
+    </form>
 
    <table id="myTable"> <!-- width="70%" cellpadding="5" cellspace="5"-->
-       <tr>
-           <th onclick="sortTable(0)"><strong>Part ID</strong></th>
-           <th onclick="sortTable(1)"><strong>Part Name</strong></th>
+       <thead>
+       <tr class="header">
+           <th <strong>Part ID</strong></a></th>
+           <th <strong>Part Name</strong></a></th>
            <th><strong>Image</strong></th>
-           <th onclick="sortTable(2)"><strong>Price</strong></th>
+           <th <strong>Price</strong></a></th>
        </tr>
+       </thead>
 
 
 <?php
-$sql = "SELECT PartID, PartName, Associated_Image1, Price FROM parts";
+
+$sql = "SELECT PartID, PartName, Associated_Image1, Price FROM parts";// ORDER BY Price";
+
+  /*if($_POST['value'] == 'Part ID') {
+    $sql .= "ORDER BY PartID";
+}
+elseif ($_GET['value'] == 'Part Name'){
+    $sql.="ORDER BY PartName";
+}
+elseif ($_GET['value'] == 'Price'){
+    $sql.="ORDER BY Price";
+}*/
 $result = $conn2->query($sql);
 
 if ($result->num_rows > 0) {
@@ -78,46 +99,8 @@ if ($result->num_rows > 0) {
     else {
         echo "NO PARTS TO SELL";
     }?>
-     </table>
 
-   <script>
-        function sortTable(n) {
-            var table, rows, switching, i, x, y,shouldSwitch,dir, switchCount =0;
-            table = document.getElementById("myTable");
-            switching = true;
-            dir = "asc";
-            while (switching){
-                switching = false;
-                rows = table.getElementsByTagName("TR");
-                for(i=1; i< (rows.length -1); i++){
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[n];
-                    y = rows[i+1].getElementsByTagName("TD")[n];
-                    if(dir == "asc"){
-                        if(x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()){
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                    else if (dir =="desc"){
-                        if(x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()){
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                }
-                if(shouldSwitch){
-                    rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
-                    switching = true;
-                    switchCount ++;
-                }
-                else{
-                    if(switchCount == 0 && dir =="asc"){
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
-            }
-        }
-    </script>
-
+   </table>
+</div>
+</div>
+</html>

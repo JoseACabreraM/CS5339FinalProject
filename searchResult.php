@@ -42,9 +42,9 @@ table, th, td {
 <?php
 
 $search_sql="Select * FROM parts where PartName LIKE '%".$_POST['search']."%'  or Description01 LIKE '%".$_POST['search']."%' or Description02 LIKE '%".$_POST['search']."%' or Description03 LIKE '%".$_POST['search']."%'
-or Description04 LIKE '%".$_POST['search']."%' or Description05 LIKE '%".$_POST['search']."%' or Description06 LIKE '%".$_POST['search']."%'";
+or Description04 LIKE '%".$_POST['search']."%' or Description05 LIKE '%".$_POST['search']."%' or Description06 LIKE '%".$_POST['search']."%' ORDER BY Price";
 $result = $conn2->query($search_sql);
-$sql = "SELECT Associated image filename1, Price FROM parts ORDER BY Price ASC";
+$sql = "SELECT Associated image filename1, Price FROM parts";// ORDER BY Price";
 $resultImage = $conn2->query($sql);
 echo '<a href="index.php"> New Search </a>'."<br>";
 
