@@ -49,6 +49,34 @@ if (isset($_SESSION['uName'])) {
             
             <div align='center'>
                 <br>
+                <form action='deleteCustomer.php' method='post' >   
+                    <input type='submit' name='delUser' value='Delete User'> 
+                </form>
+            </div>
+            
+            <div align='center'>
+                <br>
+                <form action='changePasswordAdmin.php' method='post' >   
+                    <input type='submit' name='chPass' value='Change User Password'> 
+                </form>
+            </div>
+            
+            <div align='center'>
+                <br>
+                <form action='changeAddressAdmin.php' method='post' >   
+                    <input type='submit' name='chUA' value='Change User Address'> 
+                </form>
+            </div>
+            
+            <div align='center'>
+                <br>
+                <form action='deleteAddress.php' method='post' >   
+                    <input type='submit' name='delAdd' value='Delete Address'> 
+                </form>
+            </div>
+            
+            <div align='center'>
+                <br>
                 <form action='admin.php' method='post' >   
                     <input type='submit' name='sUsers' value='Show Registered Users'> 
                 </form>

@@ -144,7 +144,6 @@ function existingUser($connection, $uName)
     elseif ($result->num_rows) {
         $row = $result->fetch_array(MYSQLI_NUM);
         $result->close();
-        echo "<br>" . $row[2] . " " . $uName . "<br>";
         if ($row[2] == $uName) return true;
         else return false;
     }

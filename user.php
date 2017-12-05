@@ -1,6 +1,9 @@
 <?php
 
+require_once 'credentials.php';
 session_start();
+
+$connection = new mysqli($db_hostname, $db_username, $db_password, $db_database);
 
 print "
     <!DOCTYPE html>
@@ -30,7 +33,14 @@ if (isset($_SESSION['uName'])) {
         
         <div align='center'>
             <br>
-            <form action='logout.php' method='post' >   
+            <form action='addAddress.php' method='post' >   
+                <input type='submit' name='addAdr' value='Add Address'> 
+            </form>               
+        </div>
+        
+        <div align='center'>
+            <br>
+            <form action='changeAddress.php' method='post' >   
                 <input type='submit' name='chAdr' value='Change Address'> 
             </form>               
         </div>
@@ -59,6 +69,7 @@ if (isset($_SESSION['uName'])) {
     ";
     if (isset($_POST['uInfo'])) {
         printUserData();
+        printUserAddress($uName);
     }
 } else {
     print "
@@ -89,4 +100,37 @@ function printUserData()
             Account Creation Date: " . $_SESSION['aTime'] . "<br><br>
             Last Login: " . $_SESSION['lTime'] . "<br>
         </div>";
+}
+
+function printUserAddress($uName)
+{
+    global $connection;
+    $query = "SELECT * FROM userAddress WHERE username= '$uName'";
+    $result = $connection->query($query);
+    print " <table  style=\"width:75%\">
+            <tr>
+                <th>Address Line</th>
+                <th>City</th> 
+                <th>State</th>
+                <th>Country</th>
+                <th>Postal</th>
+            </tr>
+    ";
+    $rows = $result->num_rows;
+    for ($j = 0; $j < $rows; ++$j) {
+        print '<tr style="text-align:center;">';
+        $result->data_seek($j);
+        echo '<td >' . $result->fetch_assoc()['address'] . '</td>';
+        $result->data_seek($j);
+        echo '<td >' . $result->fetch_assoc()['city'] . '</td>';
+        $result->data_seek($j);
+        echo '<td >' . $result->fetch_assoc()['state'] . '</td>';
+        $result->data_seek($j);
+        echo '<td >' . $result->fetch_assoc()['country'] . '</td>';
+        $result->data_seek($j);
+        echo '<td >' . $result->fetch_assoc()['postal'] . '</td>';
+        print '</tr><br>';
+
+    }
+    print "</table>";
 }
